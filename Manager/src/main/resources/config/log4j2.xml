@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration strict="true">
+
+    <appenders>
+        <appender type="Console" name="STDOUT">
+            <layout type="PatternLayout" pattern="%d %-5p %c - %m%n"/>
+        </appender>
+        <appender type="File" name="File" fileName="D:\logs\SwyMark.log">
+            <layout type="PatternLayout">
+                <pattern>%d %-5p %c - %m%n</pattern>
+            </layout>
+        </appender>
+    </appenders>
+
+    <loggers>
+        <logger name="org.apache.jsp" level="debug">
+            <appender-ref ref="File"/>
+        </logger>
+        <root level="trace">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </loggers>
+</configuration>

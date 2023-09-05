@@ -7,7 +7,9 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import vn.vnpay.controller.SmsController;
 
 public class Main {
+    Logger logger = LogManager.getLogger(getClass());
     public static void main(String[] args) throws Exception {
+
 
         Server server = new Server(8864);
 
