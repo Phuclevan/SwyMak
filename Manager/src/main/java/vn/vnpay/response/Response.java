@@ -1,17 +1,18 @@
-package vn.vnpay.model;
+package vn.vnpay.response;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@Getter
 @Setter
-@ToString
+@Getter
 @Builder
-public class Sms {
+public class Response {
     private String messageId;
     private String keyword;
     private String sender;
     private String destination;
     private String shortMessage;
     private String partnerCode;
-
+    private String status;
 }

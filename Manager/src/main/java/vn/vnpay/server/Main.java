@@ -27,7 +27,7 @@ public class Main {
         ServletHolder serHol = ctx.addServlet(ServletContainer.class, "/*");
         serHol.setInitOrder(0);
         serHol.setInitParameter("jersey.config.server.provider.classnames", SmsController.class.getCanonicalName());
-
+        logger.info("success");
         try {
             server.start();
             server.join();

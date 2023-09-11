@@ -10,4 +10,7 @@ import lombok.ToString;
 public class ApiConfig {
     private String host;
     private String port;
+
+    public ApiConfig() {
+    }
 }
