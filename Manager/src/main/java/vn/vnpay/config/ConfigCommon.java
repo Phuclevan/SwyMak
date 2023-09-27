@@ -10,11 +10,22 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Log4j2
-public class ConfigManager {
+public class ConfigCommon {
     private static ApiConfig apiConfig;
     private static DbConfig dbConfig;
 
-    public static boolean loadYaml() {
+    private static final class SingletonHolder {
+
+        private static final ConfigCommon INSTANCE = new ConfigCommon();
+    }
+    public static ConfigCommon getInstance() {
+        return ConfigCommon.SingletonHolder.INSTANCE;
+    }
+
+    private ConfigCommon() {
+    }
+
+    public boolean loadYaml() {
         try {
             YamlReader reader = new YamlReader(new FileReader("D:\\Phuclv\\SwyMak\\Manager\\src\\main\\resources\\config\\api.yaml"));
             apiConfig = reader.read(ApiConfig.class);
@@ -29,7 +40,7 @@ public class ConfigManager {
         }
     }
 
-    public static boolean loadDatabase() {
+    public boolean loadDatabase() {
         try {
             YamlReader reader = new YamlReader(new FileReader("D:\\Phuclv\\SwyMak\\Manager\\src\\main\\resources\\config\\database.yaml"));
             dbConfig = reader.read(DbConfig.class);

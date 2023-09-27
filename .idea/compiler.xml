@@ -8,10 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Manager" />
+        <module name="Producer" />
+        <module name="Consummer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Consummer" target="8" />
       <module name="Manager" target="7" />
+      <module name="Producer" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

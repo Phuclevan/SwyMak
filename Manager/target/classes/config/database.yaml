@@ -1,12 +1,14 @@
 IDLE_TIMEOUT:
-  1
+  600000
 MAXIMUM_POOL_SIZE:
-  2
+  40
 MINIMUM_IDLE:
-  3
+  5
+DriverClassName:
+  oracle.jdbc.driver.OracleDriver
 DB_URL:
-  d
+  jdbc:oracle:thin:@10.22.19.193:1521:VNPTEST
 DB_USERNAME:
-  e
+  smsgw
 DB_PASSWORD:
-  f
+  smsgw

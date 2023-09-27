@@ -1,9 +1,6 @@
-import vn.vnpay.config.ConfigManager;
-import vn.vnpay.config.DbConfig;
-import vn.vnpay.model.Sms;
+import org.apache.logging.log4j.ThreadContext;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.UUID;
 
 public class Test {
     public static void main(String[] args) {
@@ -22,10 +19,13 @@ public class Test {
 //        }else {
 //            System.out.println("sai");
 //        }
-        ConfigManager.loadDatabase();
-        System.out.println("load db done");
-        DbConfig dbConfig = ConfigManager.getDbConfig();
-        System.out.println(dbConfig.toString());
+//        ConfigManager.loadDatabase();
+//        System.out.println("load db done");
+//        DbConfig dbConfig = ConfigManager.getDbConfig();
+//        System.out.println(dbConfig.toString());
+        ThreadContext.put("token", UUID.randomUUID().toString().replaceAll("[a-zA-Z-]",""));
+        System.out.println("token: " + ThreadContext.get("token"));
+        System.out.println("dadadadsa");
 
     }
 }

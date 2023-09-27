@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration monitorInterval="30">
     <Properties>
-        <Property name="log-path">/logs/</Property>
+        <Property name="log-path">/logs/manager</Property>
         <Property name="name-file">Manager</Property>
         <Property name="size-file">64 MB</Property>
         <Property name="default-max-file">10000</Property>

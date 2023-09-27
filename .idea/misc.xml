@@ -4,6 +4,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Manager/pom.xml" />
+        <option value="$PROJECT_DIR$/Producer/pom.xml" />
+        <option value="$PROJECT_DIR$/Consummer/pom.xml" />
       </list>
     </option>
   </component>

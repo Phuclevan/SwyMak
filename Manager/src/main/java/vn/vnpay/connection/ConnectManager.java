@@ -3,13 +3,16 @@ package vn.vnpay.connection;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.log4j.Log4j2;
-import vn.vnpay.config.ConfigManager;
+import vn.vnpay.config.ConfigCommon;
 import vn.vnpay.config.DbConfig;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @Log4j2
 public class ConnectManager {
     private static HikariDataSource hikariDataSource;
-    private DbConfig dbConfig = ConfigManager.getDbConfig();
+    private DbConfig dbConfig = ConfigCommon.getDbConfig();
     private static final class SingletonHolder {
 
         private static final ConnectManager INSTANCE = new ConnectManager();
@@ -28,6 +31,7 @@ public class ConnectManager {
             config.setConnectionTimeout(dbConfig.getIDLE_TIMEOUT());
             config.setMaximumPoolSize(dbConfig.getMAXIMUM_POOL_SIZE());
             config.setMinimumIdle(dbConfig.getMINIMUM_IDLE());
+            config.setDriverClassName(dbConfig.getDriverClassName());
             config.setJdbcUrl(dbConfig.getDB_URL());
             config.setUsername(dbConfig.getDB_USERNAME());
             config.setPassword(dbConfig.getDB_PASSWORD());
@@ -38,6 +42,33 @@ public class ConnectManager {
             log.debug("Init database Online success: {}", dbConfig.getDB_URL());
         } catch (Exception ex) {
             log.warn("Init DB Online fail: ", ex);
+        }
+    }
+    public Connection getConnectionOnline() {
+        try {
+            return hikariDataSource.getConnection();
+        } catch (SQLException ex) {
+            log.error("Get connection DB Online failed by ex: ", ex);
+            return null;
+        }
+    }
+    public void closeDBOnline(Connection conn) {
+        if (conn != null) {
+            try {
+                log.info("Valid Connection Pool DB Online ...successful.");
+                conn.close();
+            } catch (SQLException e) {
+                log.warn("Close connection DB Online fail: ", e);
+            }
+        } else {
+            log.error("Valid Connection Pool DB Online ...fail.");
+        }
+    }
+    public void destroyDataSourceOn() {
+        try {
+            hikariDataSource.unwrap(HikariDataSource.class).close();
+        } catch (SQLException ex) {
+            log.error("Destroy connection to database Online fail: ", ex);
         }
     }
 
